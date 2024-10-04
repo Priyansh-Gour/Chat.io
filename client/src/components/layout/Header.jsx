@@ -6,34 +6,48 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { orange } from "../../constants/color";
 import {
   Menu as MenuIcon,
   Search as SearchIcon,
   Add as AddIcon,
   Group as GroupIcon,
-  Logout as LogOutIcon
+  Logout as LogOutIcon,
+  Notifications as NotificationIcon
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import SearchDialog from "../specific/Search";
 
 const Header = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [isMobile,setisMobile] = useState(false);
+    const [isSearch,setisSearch] = useState(false);
+    const [isNewGroup,setisNewGroup] = useState(false);
+    const [isNotification,setisNotification] = useState(false);
+
+
   const handlemobile = () => {
-    console.log("Mobile");
+    setisMobile((prev)=>!prev);
   };
-  const openSeachDialog = () => {
-    console.log("skds");
+  const openSearch = () => {
+    setisSearch((prev)=>!prev);
+    console.log("button clicked")
   };
   const openNewGroup = () => {
-    console.log("skds");
+    setisNewGroup((prev)=>!prev);
+    console.log("button clicked")
   };
+  const openNotification = () =>{
+    setisNotification((prev)=>!prev);
+  }
   const navigateToGroup = () => {
     navigate("/group")
   };
   const logoutHandler = () => {
     console.log("skjs")
   };
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
@@ -60,34 +74,32 @@ const Header = () => {
             </Box>
             <Box sx={{ flexGrow: 1 }} />
             <Box>
-              <IconButton
-                color="inherit"
-                size="large"
-                onClick={openSeachDialog}
-              >
-                <SearchIcon />
-              </IconButton>
-              <Tooltip title="New group">
-                <IconButton color="inherit" size="large" onClick={openNewGroup}>
-                  <AddIcon />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Manage Groups">
-              <IconButton color="inherit" size="large" onClick={openNewGroup}>
-                  <GroupIcon onClick={navigateToGroup} />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Logout">
-              <IconButton color="inherit" size="large" onClick={logoutHandler}>
-                  <LogOutIcon />
-                </IconButton>
-              </Tooltip>
+              <IconBtn title={"Search"} icon={<SearchIcon />} onclick={openSearch} />
+              <IconBtn title={"New group"} icon={<AddIcon />} onClick={openNewGroup}/>
+              <IconBtn title={"Manage Groups"} icon={<GroupIcon/>} onclick={navigateToGroup}/>
+              <IconBtn title={"Notifications"} icon={<NotificationIcon/>} onclick={openNotification}/>
+              <IconBtn title={"Logout"} icon={<LogOutIcon />} onClick={logoutHandler} />
             </Box>
           </Toolbar>
         </AppBar>
       </Box>
+
+      {
+        isSearch && <SearchDialog/>
+      }
+
     </>
   );
 };
+
+const IconBtn = ({title,icon,onClick}) =>{
+  return (
+  <Tooltip title={title}>
+    <IconButton color="inherit" size="large" onClick={onClick}>
+      {icon}
+    </IconButton>
+  </Tooltip>
+  );
+}
 
 export default Header;
