@@ -1,12 +1,13 @@
 import {
   AppBar,
+  Backdrop,
   Box,
   IconButton,
   Toolbar,
   Tooltip,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { orange } from "../../constants/color";
 import {
   Menu as MenuIcon,
@@ -17,7 +18,10 @@ import {
   Notifications as NotificationIcon
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import SearchDialog from "../specific/Search";
+
+const SearchDialog = lazy(()=>import("../specific/Search"));
+const NotificationDialog = lazy(()=>import("../specific/Notifications"));
+const NewGroupDialog = lazy(()=>import("../specific/NewGroups"));
 
 const Header = () => {
     const navigate = useNavigate();
@@ -32,11 +36,9 @@ const Header = () => {
   };
   const openSearch = () => {
     setisSearch((prev)=>!prev);
-    console.log("button clicked")
   };
   const openNewGroup = () => {
     setisNewGroup((prev)=>!prev);
-    console.log("button clicked")
   };
   const openNotification = () =>{
     setisNotification((prev)=>!prev);
@@ -74,10 +76,10 @@ const Header = () => {
             </Box>
             <Box sx={{ flexGrow: 1 }} />
             <Box>
-              <IconBtn title={"Search"} icon={<SearchIcon />} onclick={openSearch} />
+              <IconBtn title={"Search"} icon={<SearchIcon />} onClick={openSearch} />
               <IconBtn title={"New group"} icon={<AddIcon />} onClick={openNewGroup}/>
-              <IconBtn title={"Manage Groups"} icon={<GroupIcon/>} onclick={navigateToGroup}/>
-              <IconBtn title={"Notifications"} icon={<NotificationIcon/>} onclick={openNotification}/>
+              <IconBtn title={"Manage Groups"} icon={<GroupIcon/>} onClick={navigateToGroup}/>
+              <IconBtn title={"Notifications"} icon={<NotificationIcon/>} onClick={openNotification}/>
               <IconBtn title={"Logout"} icon={<LogOutIcon />} onClick={logoutHandler} />
             </Box>
           </Toolbar>
@@ -85,7 +87,13 @@ const Header = () => {
       </Box>
 
       {
-        isSearch && <SearchDialog/>
+        isSearch && <Suspense fallback={<Backdrop open/>}> <SearchDialog/> </Suspense>
+      }
+      {
+        isNotification && <Suspense fallback={<Backdrop open/>}> <NotificationDialog/> </Suspense>
+      }
+      {
+        isNewGroup && <Suspense fallback={<Backdrop open/>}> <NewGroupDialog/> </Suspense>
       }
 
     </>
