@@ -1,8 +1,15 @@
+import { Dialog, DialogTitle, Stack, TextField } from '@mui/material'
 import React from 'react'
+import second from 'first'
 
 const Search = () => {
   return (
-    <div>Search</div>
+    <Dialog open={true}>
+      <Stack p={"2rem"} direction={"column"} width={"25rem"}>
+        <DialogTitle textAlign={"center"}>Find people</DialogTitle>
+        <TextField label=""/>
+      </Stack>
+    </Dialog>
   )
 }
 
