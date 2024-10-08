@@ -1,4 +1,4 @@
-import avatar from "../assets/img/avatar.png"
+import avatar from "../assets/img/avatar.png";
 export const sampleChats = [
   {
     avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
@@ -19,9 +19,27 @@ export const sampleUsers = [
     avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
     name: "Reze",
     _id: "1",
-  },{
+  },
+  {
     avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
     name: "Makima",
+    _id: "2",
+  },
+];
+
+export const sampleNotification = [
+  {
+    sender: {
+      avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+      name: "Reze",
+    },
     _id: "1",
   },
-] 
+  {
+    sender: {
+      avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+      name: "Makima",
+    },
+    _id: "2",
+  },
+];
