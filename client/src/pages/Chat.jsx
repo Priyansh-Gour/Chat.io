@@ -5,8 +5,14 @@ import { grayColor, orange } from "../constants/color";
 import { AttachFile as AttachFileIcon, Send as SendIcon} from "@mui/icons-material";
 import { InputBox } from "../components/Styles/StyledComponent";
 import FileMenu from "../components/dialogs/FileMenu";
+import { sampleMessage } from "../constants/sampleData";
+import MessageComponent from "../components/shared/MessageComponent";
 
 const Chat = () => {
+  const user = {
+    _id:"sdskjdbs1",
+    name:"Lmao who"
+  }
   const containerRef = useRef(null);
   return (
     <Fragment>
@@ -23,6 +29,11 @@ const Chat = () => {
         }}
       >
         {/* messages */}
+        {
+          sampleMessage.map((i)=>(
+            <MessageComponent message={i} user={user} key={i._id}/>
+          ))
+        }
       </Stack>
 
       <form style={{
