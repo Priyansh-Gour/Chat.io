@@ -34,7 +34,7 @@ const MessageComponent = ({ message, user }) => {
           return (
             <Box key={index}>
               <a
-                href=""
+                href={url}
                 target="_blank"
                 download
                 style={{
