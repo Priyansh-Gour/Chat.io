@@ -1,4 +1,3 @@
-import avatar from "../assets/img/avatar.png";
 export const sampleChats = [
   {
     avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
