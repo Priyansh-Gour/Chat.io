@@ -109,7 +109,8 @@ export const dashboardData = {
         { _id: "1", avatar: "https://www.w3schools.com/howto/img_avatar.png" },
         { _id: "2", avatar: "https://www.w3schools.com/howto/img_avatar.png" },
       ],
-      totalMembers: 20,
+      totalMembers: 2,
+      totalMessages:20,
       creator: {
         name: "Giggles",
         avatar: "https://www.w3schools.com/howto/img_avatar.png",
@@ -125,6 +126,7 @@ export const dashboardData = {
         { _id: "2", avatar: "https://www.w3schools.com/howto/img_avatar.png" },
       ],
       totalMembers: 2,
+      totalMessages:20,
       creator: {
         name: "Bonitinha",
         avatar: "https://www.w3schools.com/howto/img_avatar.png",
