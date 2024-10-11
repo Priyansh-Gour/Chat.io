@@ -29,7 +29,7 @@ import { bgGradient } from "../constants/color";
 const ConfirmDeleteDialog = lazy(() =>
   import("../components/dialogs/ConfirmDeleteDialog")
 );
-const AddMemberDialog= lazy(() =>
+const AddMemberDialog = lazy(() =>
   import("../components/dialogs/AddMemberDialog")
 );
 
@@ -60,17 +60,17 @@ const Groups = () => {
   const closeConfirmDeleteHandler = () => {
     setConfirmDeleteDialog(false);
   };
-  const DeleteHandler = () =>{
+  const deleteHandler = () => {
     closeConfirmDeleteHandler();
-  }
+  };
 
   const isAddMember = false;
 
   const openAddHandler = () => {};
 
-  const removeMemberHandler = (id) =>{
-    console.log("removed member",id)
-  }
+  const removeMemberHandler = (id) => {
+    console.log("removed member", id);
+  };
 
   useEffect(() => {
     if (chatId) {
@@ -202,7 +202,7 @@ const Groups = () => {
         sm={4}
         bgcolor={"bisque"}
       >
-        Groups List
+        <GroupsList myGroups={sampleChats} />
       </Grid>
       <Grid
         item
@@ -245,17 +245,19 @@ const Groups = () => {
               bgcolor={"bisque"}
             >
               {/* members */}
-              {
-                sampleUsers.map((i)=>(
-                  <UserItem user={i} key={i._id} isAdded styling={{
+              {sampleUsers.map((i) => (
+                <UserItem
+                  user={i}
+                  key={i._id}
+                  isAdded
+                  styling={{
                     boxShadow: "0 0 0.5rem rgba(0,0,0,0.2)",
                     padding: "1rem 2rem",
                     borderRadius: "1rem",
                   }}
                   handler={removeMemberHandler}
-                  />
-                ))
-              }
+                />
+              ))}
             </Stack>
             {ButtonGroup}
           </>
@@ -263,14 +265,18 @@ const Groups = () => {
       </Grid>
 
       {isAddMember && (
-        <Suspense fallback={<Backdrop open/>}>
-          <AddMemberDialog/>
+        <Suspense fallback={<Backdrop open />}>
+          <AddMemberDialog />
         </Suspense>
       )}
 
       {confirmDeleteDialog && (
-        <Suspense fallback={<Backdrop open/>}>
-          <ConfirmDeleteDialog open={confirmDeleteDialog} handleClose={closeConfirmDeleteHandler} deleteHandler={deleteHandler}/>
+        <Suspense fallback={<Backdrop open />}>
+          <ConfirmDeleteDialog
+            open={confirmDeleteDialog}
+            handleClose={closeConfirmDeleteHandler}
+            deleteHandler={deleteHandler}
+          />
         </Suspense>
       )}
 
@@ -292,12 +298,12 @@ const Groups = () => {
 
 const GroupsList = ({ w = "100%", myGroups = [], chatId }) => (
   <Stack
-  width={w}
-  sx={{
-    backgroundImage: bgGradient,
-    height: "100vh",
-    overflow: "auto",
-  }}
+    width={w}
+    sx={{
+      backgroundImage: bgGradient,
+      height: "100vh",
+      overflow: "auto",
+    }}
   >
     {myGroups.length > 0 ? (
       myGroups.map((group) => (
