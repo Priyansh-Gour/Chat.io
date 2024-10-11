@@ -13,6 +13,7 @@ import {
   SearchField,
   CurveButton,
 } from "../../components/Styles/StyledComponent";
+import { DoughnutChart, LineChart } from "../../components/specific/Chart";
 
 const Dashboard = () => {
   const Appbar = (
@@ -89,7 +90,7 @@ const Dashboard = () => {
             <Typography margin={"2rem 0"} variant="h4">
               Last Messages
             </Typography>
-            {"charts"}
+            <LineChart value={[25,44,45,65,23,76]}/>
           </Paper>
 
           <Paper
@@ -105,9 +106,9 @@ const Dashboard = () => {
               maxWidth: "25rem",
             }}
           >
-            {/* {
-              "donut"
-            } */}
+            <DoughnutChart labels={["Single Chats","Group Chats"]}
+              value={[23,66]}
+            />
             <Stack
               position={"absolute"}
               direction={"row"}
@@ -160,7 +161,7 @@ const Widget = ({ title, value, Icon }) => (
         {Icon}
         <Typography>{title}</Typography>
       </Stack>
-      
+
     </Stack>
   </Paper>
 );
