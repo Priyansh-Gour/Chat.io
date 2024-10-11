@@ -18,9 +18,9 @@ const theme = createTheme({
           '& .MuiSvgIcon-root': {
             color: 'white', // Ensure that the icon itself is white
           },
-          '& .MuiDataGrid-columnSeparator': {
-            display: 'none', // Optional: hide the column separator lines
-          },
+        //   '& .MuiDataGrid-columnSeparator': {
+        //     display: 'none', // Optional: hide the column separator lines
+        //   },
         },
       },
     },
