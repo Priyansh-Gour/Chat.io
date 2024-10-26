@@ -2,6 +2,7 @@ import { User } from "../models/user.js";
 import { sendToken } from "../utils/features.js";
 import { compare } from "bcrypt";
 import { TryCatch } from "../middlewares/error.js";
+import { ErrorHandler } from "../utils/utility.js";
 
 //create a new user and save it to database and save token in cookies
 const newUser = async (req, res) => {
@@ -30,11 +31,11 @@ const login = TryCatch(async (req, res, next) => {
 
     const user = await User.findOne({ username }).select("+password");
 
-    if (!user) return next(new Error("User not found"));
+    if (!user) return next(new ErrorHandler("User not found", 404));
 
     const isMatch = await compare(password, user.password);
 
-    if (!isMatch) return next(new Error("Wrong password"));
+    if (!isMatch) return next(new ErrorHandler("Wrong password", 400));
 
     sendToken(res, user, 200, `Logged in successfully as ${user.name}`);
 });

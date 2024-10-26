@@ -8,9 +8,9 @@ const errorMiddleware = (err, req, res, next) => {
     });
 }
 
-const TryCatch = (fn) => async(req, res, next) => {
+const TryCatch = (passedFunction) => async(req, res, next) => {
     try {
-        await fn(req, res, next);
+        await passedFunction(req, res, next);
     } catch (err) {
         next(err);
     }
