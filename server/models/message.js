@@ -1,32 +1,33 @@
 import {Schema,model, models} from 'mongoose';
 
 const schema = new Schema({
-    name:{
+    content:{
         type:String,
+    },
+    attachments:[
+        {
+            public_id:{
+                type:String,
+                required:true
+            },
+            url:{
+                type:String,
+                required:true
+            }
+        }
+    ],
+    sender:{
+        type:Types.ObjectId,
+        ref:"User",
         required:true
     },
-    username:{
-        type:String,
-        required:true,
-        unique:true
+    chat:{
+        type:Types.ObjectId,
+        ref:"Chat",
+        required:true
     },
-    password:{
-        type:String,
-        required:true,
-        select:false
-    },
-    avatar:{
-        pubic_id:{
-            type:String,
-            required:true
-        },
-        url:{
-            type:String,
-            required:true
-        }
-    }
 },{
     timestamps:true
 })
 
-export const User = models.User || model('User',schema);
+export const Message = models.Message || model('Message',schema);
