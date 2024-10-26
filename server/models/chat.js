@@ -1,32 +1,24 @@
-import {Schema,model, models} from 'mongoose';
+import {Schema,Types,model, models} from 'mongoose';
 
 const schema = new Schema({
     name:{
         type:String,
         required:true
     },
-    username:{
-        type:String,
-        required:true,
-        unique:true
+    groupChat:{
+        type:Boolean,
+        default:false
     },
-    password:{
-        type:String,
-        required:true,
-        select:false
+    creator:{
+        type:Types.ObjectId,
+        ref:"User",
     },
-    avatar:{
-        pubic_id:{
-            type:String,
-            required:true
-        },
-        url:{
-            type:String,
-            required:true
-        }
-    }
+    members:[{
+        type:Types.ObjectId,
+        ref:"User",
+    }]
 },{
     timestamps:true
 })
 
-export const User = models.User || model('User',schema);
+export const Chat = models.Chat || model('Chat',schema);
