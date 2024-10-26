@@ -1,4 +1,4 @@
-import {Schema,model, models} from 'mongoose';
+import mongoose,{Schema,model} from 'mongoose';
 
 const schema = new Schema({
     name:{
@@ -16,7 +16,7 @@ const schema = new Schema({
         select:false
     },
     avatar:{
-        pubic_id:{
+        public_id:{
             type:String,
             required:true
         },
@@ -29,4 +29,4 @@ const schema = new Schema({
     timestamps:true
 })
 
-export const User = models.User || model('User',schema);
+export const User = mongoose.models.User || model('User',schema);
