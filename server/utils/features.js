@@ -20,7 +20,7 @@ const cookieOption={
 }
 const sendToken = (res, user, code, message) => {
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+  const token = jwt.sign({_id: user._id }, process.env.JWT_SECRET);
 
   return res.status(code).cookie("token",token, cookieOption).json({ 
     success: true,  
@@ -29,4 +29,8 @@ const sendToken = (res, user, code, message) => {
 
 };
 
-export { connectDB, sendToken };
+const emitEvent = (req,event,user,data)=>{
+    console.log("Emitting",event);
+}
+
+export { connectDB, sendToken, cookieOption, emitEvent };
