@@ -3,6 +3,7 @@ import {login} from '../controllers/user.js';
 
 const app = express.Router();
 
-app.get("/login", login);
+app.post("/new", login);
+app.post("/login", login);
 
 export default app;
