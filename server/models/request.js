@@ -1,32 +1,23 @@
 import {Schema,model, models} from 'mongoose';
 
 const schema = new Schema({
-    name:{
+    status:{
         type:String,
+        default:"pending",
+        enum:["pending","accepted","rejected"]
+    },
+    sender:{
+        type:Types.ObjectId,
+        ref:"User",
         required:true
     },
-    username:{
-        type:String,
-        required:true,
-        unique:true
+    receiver:{
+        type:Types.ObjectId,
+        ref:"Chat",
+        required:true
     },
-    password:{
-        type:String,
-        required:true,
-        select:false
-    },
-    avatar:{
-        pubic_id:{
-            type:String,
-            required:true
-        },
-        url:{
-            type:String,
-            required:true
-        }
-    }
 },{
     timestamps:true
 })
 
-export const User = models.User || model('User',schema);
+export const Request = models.Request || model('Request',schema)
