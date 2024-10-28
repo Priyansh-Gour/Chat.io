@@ -10,6 +10,7 @@ app.post("/new",newGroupChat);
 
 app.get("/my",getMyChats);
 
+//need to check this api
 app.get("/my/groups",getMyGroups);
 
 export default app;
