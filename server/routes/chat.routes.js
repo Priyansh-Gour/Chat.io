@@ -8,6 +8,7 @@ app.use(isAuthenticated);
 
 app.post("/new",newGroupChat);
 
+//and this too
 app.get("/my",getMyChats);
 
 //need to check this api
