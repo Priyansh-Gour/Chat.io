@@ -82,6 +82,4 @@ const getMyGroups = TryCatch(async (req, res, next) => {
   });
 });
 
-
-
 export { newGroupChat, getMyChats, getMyGroups };
