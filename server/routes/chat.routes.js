@@ -11,7 +11,6 @@ app.post("/new",newGroupChat);
 //and this too
 app.get("/my",getMyChats);
 
-//need to check this api
 app.get("/my/groups",getMyGroups);
 
 export default app;
