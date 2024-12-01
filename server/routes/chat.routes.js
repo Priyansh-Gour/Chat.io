@@ -8,6 +8,8 @@ app.use(isAuthenticated);
 
 app.post("/new",newGroupChat);
 
+//testing of this two api below is done
+
 app.get("/my",getMyChats);
 
 app.get("/my/groups",getMyGroups);
